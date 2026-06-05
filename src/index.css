@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Colors */
+  --background: oklch(0.9789 0.0082 121.6272);
+  --foreground: oklch(0 0 0);
+
+  --primary: oklch(0.5106 0.2301 276.9656);
+  --secondary: oklch(0.7038 0.1230 182.5025);
+  --accent: oklch(0.7686 0.1647 70.0804);
+
+  --muted: oklch(0.9551 0 0);
+  --border: oklch(0 0 0);
+
+  /* Typography */
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  /* Layout */
+  --radius: 1rem;
+}
+
+.dark {
+  --background: oklch(0 0 0);
+  --foreground: oklch(1 0 0);
+
+  --primary: oklch(0.6801 0.1583 276.9349);
+  --secondary: oklch(0.7845 0.1325 181.9120);
+  --accent: oklch(0.8790 0.1534 91.6054);
+
+  --muted: oklch(0.3211 0 0);
+  --border: oklch(0.4459 0 0);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
