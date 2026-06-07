@@ -24,7 +24,7 @@ function Navbar() {
         };
     },[isMobile])
   return (
-        <nav className={`${theme === "dark" ? "dark" : ""} p-2 flex items-center ${isMobile ? "justify-between" : "justify-around"} overflow-hidden bg-[var(--background)] text-[var(--foreground)]`}>
+        <nav className={`${theme === "dark" ? "dark" : ""} p-2 flex items-center ${isMobile ? "justify-between" : "justify-around"} border-b-2 border-[var(--border)] overflow-hidden bg-[var(--background)] text-[var(--foreground)]`}>
             <a href="/" className="font-bold text-xl"><IoIosBookmarks className='w-10 h-10 text-[var(--accent)]' /></a>
             {isMobile?(
                 <>
