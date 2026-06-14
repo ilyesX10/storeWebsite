@@ -4,13 +4,17 @@ import Header from './component/Header'
 import ThemeProvider from './ThemeProvider'
 import Navbar from './component/Navbar';
 import Stats from './component/Stats';
+import Details from './component/details';
 function App() {
 
   return (
     <ThemeProvider>
-      <Navbar />
-      <Header/>
-      <Stats />
+      <div className="relative">
+        <Navbar />
+        <Header/>
+        <Stats />
+        <Details />
+      </div>
     </ThemeProvider>
   )
 }

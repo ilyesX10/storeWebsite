@@ -2,7 +2,6 @@ import React from 'react'
 import { useContext } from 'react';
 import { ThemeContext } from '../ThemeContext';
 import headerImg from '../assets/hero.jpg'
-import Button from './Button';
 import { motion } from "motion/react";
 function Header() {
   const { theme, toggleTheme } = useContext(ThemeContext)
@@ -20,9 +19,6 @@ function Header() {
               >
                 Discover Your Next Favorite Book
               </motion.h1>
-              <Button className={`${theme === 'dark' ? 'dark':''} mt-4 p-2 text-base sm:text-lg lg:text-xl hover:cursor-pointer bg-[var(--primary)] text-white rounded-lg`}>
-                  Browse Books
-              </Button>
             </div>
           </div>  
     </header>

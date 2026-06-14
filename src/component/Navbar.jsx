@@ -24,7 +24,7 @@ function Navbar() {
         };
     },[isMobile])
   return (
-        <nav className={`${theme === "dark" ? "dark" : ""} p-2 flex items-center ${isMobile ? "justify-between" : "justify-around"} border-b-2 border-[var(--border)] overflow-hidden bg-[var(--background)] text-[var(--foreground)]`}>
+        <nav className={`fixed top-0 right-0 left-0 z-100 ${theme === "dark" ? "dark" : ""} p-2 flex items-center ${isMobile ? "justify-between" : "justify-around"} border-b-2 border-[var(--border)] overflow-hidden bg-[var(--background)] text-[var(--foreground)]`}>
             <a href="/" className="font-bold text-xl"><IoIosBookmarks className='w-10 h-10 text-[var(--accent)]' /></a>
             {isMobile?(
                 <>
@@ -49,7 +49,7 @@ function Navbar() {
                                 {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                             </button>
                         </div>
-                        <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-lg">
+                        <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-lg border-2 border-[var(--border)]">
                             Login
                         </Button>
                         <Button className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-lg">
@@ -72,10 +72,10 @@ function Navbar() {
                         {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                     </button>
                 </div>
-                <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-lg">
+                <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-lg border-2 border-[var(--border)]">
                     Login
                 </Button>
-                <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-lg">
+                <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-lg ">
                     Sign Up
                 </Button>
             </div>
