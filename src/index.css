@@ -20,6 +20,13 @@
 
   /* Layout */
   --radius: 1rem;
+   /* Shadow */
+  --shadow: 0 0 6px 3px rgba(0,0,0,.12),
+            0 0 20px 8px rgba(0,0,0,.10),
+            0 0 40px 14px rgba(0,0,0,.08);
+  --cards_Shadow: 0 6px 10px -2px rgba(0,0,0,.10),
+                  0 12px 24px -4px rgba(0,0,0,.08),
+                  0 20px 40px -6px rgba(0,0,0,.06);
 }
 
 .dark {
@@ -32,6 +39,14 @@
 
   --muted: oklch(0.3211 0 0);
   --border: oklch(0.4459 0 0);
+  /* Shadow */
+  --shadow: 0 0 6px 3px rgba(255, 255, 255, 0.12),
+            0 0 20px 8px rgba(255, 255, 255, 0.1),
+            0 0 40px 14px rgba(255, 255, 255, 0.08);
+  --cards_Shadow: 0 6px 10px -2px rgba(255, 255, 255, 0.100),
+                  0 12px 24px -4px rgba(255, 255, 255, 0.100),
+                  0 20px 40px -6px rgba(255, 255, 255, 0.100),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.100);
 }
 
 body {

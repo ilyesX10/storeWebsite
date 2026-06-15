@@ -1,21 +1,21 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './App.css'
 import Header from './component/Header'
-import ThemeProvider from './ThemeProvider'
 import Navbar from './component/Navbar';
 import Stats from './component/Stats';
 import Details from './component/details';
+import Footer from './component/Footer';
+import { ThemeContext } from './ThemeContext';
 function App() {
-
+const { theme, toggleTheme } = useContext(ThemeContext)
   return (
-    <ThemeProvider>
-      <div className="relative">
-        <Navbar />
-        <Header/>
-        <Stats />
-        <Details />
-      </div>
-    </ThemeProvider>
+    <div className={`${theme === "dark" ? "dark" : ""} bg-[var(--background)] text-[var(--foreground)] relative`}>
+      <Navbar />
+      <Header/>
+      <Stats />
+      <Details />
+      <Footer />
+    </div>
   )
 }
 

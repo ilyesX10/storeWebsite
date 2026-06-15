@@ -1,10 +1,7 @@
 import React from 'react'
-import { useContext } from 'react';
-import { ThemeContext } from '../ThemeContext';
 import headerImg from '../assets/hero.jpg'
 import { motion } from "motion/react";
 function Header() {
-  const { theme, toggleTheme } = useContext(ThemeContext)
   return (
     <>
     <header className="border-b-2 border-[var(--border)] h-[60vh] md:h-[80vh] relative">

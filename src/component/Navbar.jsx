@@ -24,7 +24,7 @@ function Navbar() {
         };
     },[isMobile])
   return (
-        <nav className={`fixed top-0 right-0 left-0 z-100 ${theme === "dark" ? "dark" : ""} p-2 flex items-center ${isMobile ? "justify-between" : "justify-around"} border-b-2 border-[var(--border)] overflow-hidden bg-[var(--background)] text-[var(--foreground)]`}>
+        <nav className={`fixed top-0 right-0 left-0 z-100 p-2 flex items-center ${isMobile ? "justify-between" : "justify-around"} border-b-2 border-[var(--border)] overflow-hidden bg-[var(--background)] text-[var(--foreground)]`}>
             <a href="/" className="font-bold text-xl"><IoIosBookmarks className='w-10 h-10 text-[var(--accent)]' /></a>
             {isMobile?(
                 <>
@@ -38,10 +38,9 @@ function Navbar() {
                         </button>
                     </div>
                     <ul className="flex flex-col gap-4">
-                        <li><a href="/" className="p-3 rounded-lg hover:bg-[var(--muted)]">Home</a></li>
-                        <li><a href="/about" className="p-3 rounded-lg hover:bg-[var(--muted)]">Browse</a></li>
-                        <li><a href="/contact" className="p-3 rounded-lg hover:bg-[var(--muted)]">Contact</a></li>
-                        <li><a href="/location" className="p-3 rounded-lg hover:bg-[var(--muted)]">location</a></li> 
+                        <li><a href="/" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Home</a></li>
+                        <li><a href="/Browse" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Browse</a></li>
+                        <li><a href="/contact" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Contact</a></li>
                     </ul>
                     <div className="flex flex-col gap-4 mt-4">
                         <div className="flex items-center justify-center">
@@ -49,10 +48,10 @@ function Navbar() {
                                 {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                             </button>
                         </div>
-                        <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-lg border-2 border-[var(--border)]">
+                        <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
                             Login
                         </Button>
-                        <Button className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-lg">
+                        <Button className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
                             Sign Up
                         </Button>
                     </div>
@@ -61,10 +60,9 @@ function Navbar() {
             ):
             (<>
             <ul className="flex gap-4">
-                <li><a href="/" className="p-3 rounded-lg hover:bg-[var(--muted)]">Home</a></li>
-                <li><a href="/about" className="p-3 rounded-lg hover:bg-[var(--muted)]">Browse</a></li>
-                <li><a href="/contact" className="p-3 rounded-lg hover:bg-[var(--muted)]">Contact</a></li>
-                <li><a href="/location" className="p-3 rounded-lg hover:bg-[var(--muted)]">location</a></li>
+                <li><a href="/" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Home</a></li>
+                <li><a href="/Browse" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Browse</a></li>
+                <li><a href="/contact" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Contact</a></li>
             </ul>
             <div className="flex gap-4">
                 <div className="flex items-center">
@@ -72,10 +70,10 @@ function Navbar() {
                         {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                     </button>
                 </div>
-                <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-lg border-2 border-[var(--border)]">
+                <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
                     Login
                 </Button>
-                <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-lg ">
+                <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
                     Sign Up
                 </Button>
             </div>
