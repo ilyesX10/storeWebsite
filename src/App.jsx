@@ -20,4 +20,3 @@ const { theme, toggleTheme } = useContext(ThemeContext)
 }
 
 export default App
-

@@ -4,7 +4,10 @@ import { motion } from "motion/react";
 function Header() {
   return (
     <>
-    <header className="border-b-2 border-[var(--border)] h-[60vh] md:h-[80vh] relative">
+    <header 
+      className="h-[60vh] md:h-[80vh] relative overflow-hidden"
+      style={{ clipPath: "ellipse(100% 90% at 50% 10%)" }}
+    >
         <img src={headerImg} alt="header" className="w-full h-full object-cover object-center"/>
           <div className="absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center">  
             <div className="flex flex-col items-center gap-4">
@@ -12,7 +15,7 @@ function Header() {
                 initial={{ opacity: 0, filter: "blur(10px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={{ duration: 0.8 }}
-                className="sm:text-4xl text-2xl lg:text-6xl font-bold text-white"
+                className="sm:text-4xl text-2xl lg:text-6xl font-bold text-white text-center px-4"
               >
                 Discover Your Next Favorite Book
               </motion.h1>
