@@ -1,20 +1,23 @@
-import { useContext, useState } from 'react'
 import './App.css'
-import Header from './component/Header'
-import Navbar from './component/Navbar';
-import Stats from './component/Stats';
-import Details from './component/details';
-import Footer from './component/Footer';
+import { useContext } from 'react'
 import { ThemeContext } from './ThemeContext';
+import Home from './pages/Home';
+import Browse from './pages/Browse';
+import Navbar from './component/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 function App() {
-const { theme, toggleTheme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
   return (
     <div className={`${theme === "dark" ? "dark" : ""} bg-[var(--background)] text-[var(--foreground)] relative`}>
-      <Navbar />
-      <Header/>
-      <Stats />
-      <Details />
-      <Footer />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="*" element={<h1 className="text-2xl font-bold mt-30 text-center">Page Not Found 404</h1>}></Route>
+        </Routes>
+      </Router>
     </div>
   )
 }
