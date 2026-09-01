@@ -1,9 +1,9 @@
 import React from 'react'
 import { motion } from "motion/react";
 
-function Button({ children, className }) {
+function Button({ children, className, onClick, type }) {
   return (
-    <motion.button type="button" className={className} transition={{ type: "spring",stiffness: 400,damping: 25 }} whileTap={{ scale: 0.96 }}>
+    <motion.button className={className} onClick={onClick} type={type} transition={{ type: "spring", stiffness: 400, damping: 25 }} whileTap={{ scale: 0.96 }}>
       {children}
     </motion.button>
   )

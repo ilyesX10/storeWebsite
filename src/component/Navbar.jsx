@@ -3,14 +3,15 @@ import { useState,useEffect } from 'react'
 import { IoIosBookmarks } from "react-icons/io";
 import { LuSquareMenu } from "react-icons/lu";
 import { CgCloseR } from "react-icons/cg";
-import { motion } from "motion/react";
+import { motion } from "motion/react";  
 import Button from './Button';
 import { useContext } from 'react';
 import { ThemeContext } from '../ThemeContext';
 import { IoMdMoon,IoMdSunny } from "react-icons/io";
+import { Link, NavLink } from 'react-router-dom';
 
 
-function Navbar() {
+function Navbar({isSingin,setIsSingin}) {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,10 +50,10 @@ function Navbar() {
                             </button>
                         </div>
                         <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                            Login
+                            <Link to="/login" onClick={()=>{setIsSingin(false);}}>Login</Link>
                         </Button>
                         <Button className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
-                            Sign Up
+                            <Link to="/login" onClick={()=>{setIsSingin(true);}}>Sign Up</Link>
                         </Button>
                     </div>
                 </aside>   
@@ -71,10 +72,10 @@ function Navbar() {
                     </button>
                 </div>
                 <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                    Login
+                    <Link to="/login"onClick={()=>{setIsSingin(false);}}>Login</Link>
                 </Button>
                 <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
-                    Sign Up
+                    <Link to="/login" onClick={()=>{setIsSingin(true);}}>Sign Up</Link>
                 </Button>
             </div>
             </>
