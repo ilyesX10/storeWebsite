@@ -13,7 +13,6 @@ function Browse() {
         if (error) {
             console.error('Error fetching:', error);
         } else {
-            console.log("hello")
             console.log('Books from Supabase:', data);
             setBooks(data);
         }

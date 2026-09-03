@@ -5,7 +5,7 @@ function BooksCard({ book }) {
     return (
         <div className="bg-[var(--muted)] border border-[var(--border)] p-4 rounded-[var(--radius)] shadow-[var(--cards_Shadow)] flex flex-col justify-between hover:-translate-y-1 transition-transform duration-200">
             {/* Book Cover */}
-            <div className="w-full aspect-[2/3] overflow-hidden rounded-[var(--radius)] mb-3 bg-black/10">
+            <div className="w-full aspect-[2/3] overflow-hidden rounded-[var(--radius)] border-1 border-[var(--border)] mb-3 bg-black/10">
                 <img
                     src={book?.cover_url || cover}
                     alt={book?.title + ' Book Cover'}
