@@ -20,13 +20,28 @@ function Browse() {
         }
         setLoading(false)
     }
+    async function filterBooks(searchQuery){
+        setLoading(true)
+        const { data, error } = await supabase
+            .from('books')
+            .select('*')
+            .or(`title.ilike.%${searchQuery}%,author.ilike.%${searchQuery}%,category.ilike.%${searchQuery}%`);
+        if (error) {
+            console.error('Error filtering:', error);
+        } else {
+            console.log('Filtered books:', data);
+            setBooks(data);
+        }
+        setLoading(false)
+    return data;   
+    }
     useEffect(() => {
         fetchBooks();
     }, []);
     return (
         <>
             <main className='container mx-auto pt-28 pb-16 px-4 max-w-6xl flex flex-col gap-8 min-h-[80vh]'>
-                <Search />
+                <Search filterBooks={filterBooks} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 place-items-center">
                     {loading ? (
                         <div className='size-12 col-span-full'>
