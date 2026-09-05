@@ -13,6 +13,10 @@ function Search({filterBooks}) {
             filterBooks(input)
         }
     }
+    function handelClickBtn(e){
+            e.preventDefault()
+            filterBooks(input)
+    }
     return (
         <>
             <form action="" className='flex items-center justify-center gap-2 w-full px-6'>
@@ -28,6 +32,7 @@ function Search({filterBooks}) {
                         onKeyDown={handelClick}
                     />
                 </div>
+                <Button onClick={handelClickBtn} className="bg-[var(--secondary)] px-6 py-2 text-[var(--background)] rounded-[var(--radius)] text-sm sm:text-base">Search</Button>
             </form>
         </>
     )
