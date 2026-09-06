@@ -1,12 +1,46 @@
 import Footer from "../component/Footer";
 import Button from "../component/Button"
+import {supabase} from "../lib/supabaseClient"
+import {useState, useEffect} from 'react'
+
+
 function Login({isSingin,setIsSingin}){
-
-    function handleSigninClick(){
-        setIsSingin(!isSingin);
-        return;
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    const [username,setUsername] = useState("")
+    function handelChange(e){
+        if(e.target.name == "email"){
+            setEmail(e.target.value)
+        }
+        if(e.target.name == "password"){
+            setPassword(e.target.value)
+        }
+        if(e.target.name == "username"){
+            setUsername(e.target.value)
+        }
     }
-
+    async function handleSigninClick(){
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    username: username
+                }
+            }
+        });
+        return data;
+    }
+    async function handleLoginClick(){
+           const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+           });
+           return data;
+    }
+    useEffect(()=>{
+        console.log(handleSigninClick())
+    },[])
     return(
         <>
             <main className="container mx-auto pt-28 pb-16 px-4 max-w-6xl flex justify-center gap-8 m-12">
@@ -14,15 +48,15 @@ function Login({isSingin,setIsSingin}){
                     <form action="" className="flex flex-col gap-4">
                         {isSingin && <div className="flex flex-col gap-4">
                             <label htmlFor="username">Username</label>
-                            <input type="text" name="username" id="username" className="border border-[var(--border)] rounded-[var(--radius)] p-2 outline-transparent outline-2 focus:outline-[var(--foreground)]/50 transition-all" />
+                            <input value={username} onChange={handelChange} type="text" name="username" id="username" className="border border-[var(--border)] rounded-[var(--radius)] p-2 outline-transparent outline-2 focus:outline-[var(--foreground)]/50 transition-all" />
                         </div>}
                         <div className="flex flex-col gap-4">
                             <label htmlFor="email">Email</label>
-                            <input type="email" name="email" id="email" className="border border-[var(--border)] rounded-[var(--radius)] p-2 outline-transparent outline-2 focus:outline-[var(--foreground)]/50 transition-all" />
+                            <input value={email} onChange={handelChange} type="email" name="email" id="email" className="border border-[var(--border)] rounded-[var(--radius)] p-2 outline-transparent outline-2 focus:outline-[var(--foreground)]/50 transition-all" />
                         </div>
                         <div className="flex flex-col gap-4">
                             <label htmlFor="Password">Password</label>
-                            <input type="password" name="password" id="password" className="border border-[var(--border)] rounded-[var(--radius)] p-2 outline-transparent outline-2 focus:outline-[var(--foreground)]/50 transition-all" />
+                            <input value={password} onChange={handelChange} type="password" name="password" id="password" className="border border-[var(--border)] rounded-[var(--radius)] p-2 outline-transparent outline-2 focus:outline-[var(--foreground)]/50 transition-all" />
                         </div>
                         <Button className="bg-[var(--secondary)] text-white rounded-[var(--radius)] py-2 px-5" type="button" onClick={handleSigninClick}>{isSingin ? "Sign Up" : "Sign In"}</Button>
                     </form>
