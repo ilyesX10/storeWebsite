@@ -11,18 +11,15 @@ import { IoMdMoon,IoMdSunny } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
 import { ul } from 'motion/react-client';
 import { supabase } from '../lib/supabaseClient.js'
+import { AuthContext } from "../AuthProvider";
 
 
-function Navbar({isSingin,setIsSingin,setUsername,username,isLogined,setIsLogined}) {
+function Navbar({}) {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-   
-
-    function handleClickLogin(){ 
-        setIsSingin(false)
-    }
+    const {isSignIn,setSignIn} = useContext(AuthContext)
 
 useEffect(()=>{
     const handleResize = () => {
@@ -58,13 +55,13 @@ useEffect(()=>{
                                 {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                             </button>
                         </div>
-                        {!isLogined ? (
+                        {!isSignIn ? (
                             <>
                                 <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                                    <Link to="/login" onClick={handleClickLogin}>Login</Link>
+                                    <Link to="/sign-in">Sign In</Link>
                                 </Button>
                                 <Button className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
-                                    <Link to="/login" onClick={()=>{setIsSingin(true);}}>Sign Up</Link>
+                                    <Link to="/sign-up">Sign Up</Link>
                                 </Button>
                             </>
                             ) : (
@@ -73,8 +70,8 @@ useEffect(()=>{
                                     {username}
                                 </button>
                                 <ul className={`${isOpen ? "block" : "hidden"} flex flex-col gap-4 bg-[var(--background)] top-16 right-0 border-2 border-[var(--border)] p-2 rounded-[var(--radius)]`}>
-                                    <li><a href="/" className="p-3 hover:bg-[var(--muted)]">My Profile</a></li>
-                                    <li><button onClick={()=>{setIsLogined(false);}} className="p-3 hover:bg-[var(--muted)]">Logout</button></li>
+                                    <li><button className="p-3 hover:bg-[var(--muted)]">My Profile</button></li>
+                                    <li><button className="p-3 hover:bg-[var(--muted)]">Logout</button></li>
                                 </ul>
                             </>
                             )}
@@ -94,13 +91,13 @@ useEffect(()=>{
                         {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                     </button>
                 </div>
-                {!isLogined ? (
+                {!isSignIn ? (
                 <>
                     <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                        <Link to="/login"onClick={handleClickLogin}>Login</Link>
+                        <Link to="/sign-in">Sign In</Link>
                     </Button>
                     <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
-                        <Link to="/login" onClick={()=>{setIsSingin(true);}}>Sign Up</Link>
+                        <Link to="/sign-up">Sign Up</Link>
                     </Button>
                 </>
                 ):(
@@ -110,7 +107,7 @@ useEffect(()=>{
                     </button>
                     <ul className={`${isOpen ? "block" : "hidden"} z-100 flex flex-col gap-4 bg-[var(--background)] absolute top-16 right-0 border-2 border-[var(--border)] p-2 rounded-[var(--radius)]`}>
                         <li><a href="/" className="p-3 hover:bg-[var(--muted)] text-[var(--foreground)]">My Profile</a></li>
-                        <li><button onClick={()=>{setIsLogined(false);}} className="p-3 hover:bg-[var(--muted)] text-[var(--foreground)]">Logout</button></li>
+                        <li><button className="p-3 hover:bg-[var(--muted)] text-[var(--foreground)]">Logout</button></li>
                     </ul>
                     </>
                 )}
