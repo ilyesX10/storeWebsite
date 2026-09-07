@@ -4,10 +4,10 @@ import {supabase} from "../lib/supabaseClient"
 import {useState, useEffect} from 'react'
 
 
-function Login({isSingin,setIsSingin}){
+function Login({isSingin,setIsSingin,username,setUsername,isLogined,setIsLogined}){
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
-    const [username,setUsername] = useState("")
+    
     function handelChange(e){
         if(e.target.name == "email"){
             setEmail(e.target.value)
@@ -19,7 +19,28 @@ function Login({isSingin,setIsSingin}){
             setUsername(e.target.value)
         }
     }
+       async function getUserProfile() {
+            const { data: { user } } = await supabase.auth.getUser();
+    
+            if (!user) {
+                setIsLogined(false);
+                return;
+            }
+    
+            setIsLogined(true);
+    
+            const { data, error } = await supabase
+                    .from('profiles')
+                    .select('username')
+                    .eq('id', user.id)
+    
+            if(data) {
+                setUsername(data.username)
+                console.log(data.username)
+            }                  
+        }
     async function handleSigninClick(){
+        if(isSingin){
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
@@ -29,18 +50,33 @@ function Login({isSingin,setIsSingin}){
                 }
             }
         });
+        if (data?.user) {
+                const { error: profileError } = await supabase
+                    .from('profiles')
+                    .insert([
+                        {
+                            id: data.user.id,       
+                            username: username,
+                            email: email
+                        }
+                    ])  
+                if (profileError) {
+                    console.error("Profile creation error:", profileError.message);
+                } else {
+                    console.log("Profile created successfully!");
+                }
         return data;
-    }
-    async function handleLoginClick(){
+        }
+        }else{
            const { data, error } = await supabase.auth.signInWithPassword({
                 email: email,
                 password: password
            });
-           return data;
+           getUserProfile() 
+           setIsSingin(false)
+        }
     }
-    useEffect(()=>{
-        console.log(handleSigninClick())
-    },[])
+
     return(
         <>
             <main className="container mx-auto pt-28 pb-16 px-4 max-w-6xl flex justify-center gap-8 m-12">

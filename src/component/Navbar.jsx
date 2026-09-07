@@ -9,23 +9,32 @@ import { useContext } from 'react';
 import { ThemeContext } from '../ThemeContext';
 import { IoMdMoon,IoMdSunny } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
+import { ul } from 'motion/react-client';
+import { supabase } from '../lib/supabaseClient.js'
 
 
-function Navbar({isSingin,setIsSingin}) {
+function Navbar({isSingin,setIsSingin,setUsername,username,isLogined,setIsLogined}) {
     const { theme, toggleTheme } = useContext(ThemeContext);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    useEffect(()=>{
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        }
-        window.addEventListener('resize', handleResize);
-        return () => {
+    const [isOpen, setIsOpen] = useState(false);
+   
+
+    function handleClickLogin(){ 
+        setIsSingin(false)
+    }
+
+useEffect(()=>{
+    const handleResize = () => {
+        setIsMobile(window.innerWidth < 768);
+    }
+    window.addEventListener('resize', handleResize);
+    return () => {
             window.removeEventListener('resize', handleResize);
         };
     },[isMobile])
   return (
-        <nav className={`fixed top-0 right-0 left-0 z-100 p-2 flex items-center ${isMobile ? "justify-between" : "justify-around"} border-b-2 border-[var(--border)] overflow-hidden bg-[var(--background)] text-[var(--foreground)]`}>
+        <nav className={`fixed top-0 right-0 left-0 z-100 p-2 h-16 box-border flex items-center ${isMobile ? "justify-between" : "justify-around"} border-b-2 border-[var(--border)] bg-[var(--background)] text-[var(--foreground)]`}>
             <a href="/" className="font-bold text-xl"><IoIosBookmarks className='w-10 h-10 text-[var(--accent)]' /></a>
             {isMobile?(
                 <>
@@ -49,39 +58,65 @@ function Navbar({isSingin,setIsSingin}) {
                                 {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                             </button>
                         </div>
-                        <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                            <Link to="/login" onClick={()=>{setIsSingin(false);}}>Login</Link>
-                        </Button>
-                        <Button className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
-                            <Link to="/login" onClick={()=>{setIsSingin(true);}}>Sign Up</Link>
-                        </Button>
+                        {!isLogined ? (
+                            <>
+                                <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
+                                    <Link to="/login" onClick={handleClickLogin}>Login</Link>
+                                </Button>
+                                <Button className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
+                                    <Link to="/login" onClick={()=>{setIsSingin(true);}}>Sign Up</Link>
+                                </Button>
+                            </>
+                            ) : (
+                            <>
+                                <button onClick={()=>setIsOpen(!isOpen)} className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
+                                    {username}
+                                </button>
+                                <ul className={`${isOpen ? "block" : "hidden"} flex flex-col gap-4 bg-[var(--background)] top-16 right-0 border-2 border-[var(--border)] p-2 rounded-[var(--radius)]`}>
+                                    <li><a href="/" className="p-3 hover:bg-[var(--muted)]">My Profile</a></li>
+                                    <li><button onClick={()=>{setIsLogined(false);}} className="p-3 hover:bg-[var(--muted)]">Logout</button></li>
+                                </ul>
+                            </>
+                            )}
                     </div>
                 </aside>   
                 </>
             ):
-            (<>
+            (<>  
             <ul className="flex gap-4">
                 <li><a href="/" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Home</a></li>
                 <li><a href="/Browse" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Browse</a></li>
                 <li><a href="/contact" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Contact</a></li>
             </ul>
-            <div className="flex gap-4">
+            <div className="flex gap-4 relative">
                 <div className="flex items-center">
                     <button onClick={toggleTheme} className="p-1 rounded-full bg-[var(--foreground)] text-[var(--background)] w-6 h-6 flex items-center justify-center">
                         {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                     </button>
                 </div>
-                <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                    <Link to="/login"onClick={()=>{setIsSingin(false);}}>Login</Link>
-                </Button>
-                <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
-                    <Link to="/login" onClick={()=>{setIsSingin(true);}}>Sign Up</Link>
-                </Button>
+                {!isLogined ? (
+                <>
+                    <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
+                        <Link to="/login"onClick={handleClickLogin}>Login</Link>
+                    </Button>
+                    <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
+                        <Link to="/login" onClick={()=>{setIsSingin(true);}}>Sign Up</Link>
+                    </Button>
+                </>
+                ):(
+                    <>
+                    <button onClick={()=>setIsOpen(!isOpen)} className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
+                        {username}
+                    </button>
+                    <ul className={`${isOpen ? "block" : "hidden"} z-100 flex flex-col gap-4 bg-[var(--background)] absolute top-16 right-0 border-2 border-[var(--border)] p-2 rounded-[var(--radius)]`}>
+                        <li><a href="/" className="p-3 hover:bg-[var(--muted)] text-[var(--foreground)]">My Profile</a></li>
+                        <li><button onClick={()=>{setIsLogined(false);}} className="p-3 hover:bg-[var(--muted)] text-[var(--foreground)]">Logout</button></li>
+                    </ul>
+                    </>
+                )}
             </div>
-            </>
-            )}
-            
-
+            </>)
+        }   
         </nav>
   )
 }
