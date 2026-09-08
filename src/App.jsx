@@ -6,7 +6,7 @@ import Browse from './pages/Browse';
 import Contact from './pages/Contact';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
-import Dashboard from './pages/Dashboard';
+import UserDashboard from './pages/UserDashboard';
 import Navbar from './component/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {useState} from 'react';
@@ -22,7 +22,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
           <Route path="*" element={<h1 className="text-2xl font-bold mt-30 text-center">Page Not Found 404</h1>}></Route>
         </Routes>
       </Router>

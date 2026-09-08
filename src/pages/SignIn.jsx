@@ -3,11 +3,8 @@ import Button from "../component/Button"
 import {useState, useEffect} from 'react'
 import {supabase} from "../lib/supabaseClient"
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../AuthProvider";
 
 function SignIn(){
-    const {isSignIn,setIsSignIn} = useContext(AuthContext);
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const navigate = useNavigate();
@@ -22,7 +19,6 @@ function SignIn(){
         }
         else{
             navigate("/")
-            setIsSignIn(true)
         }
     }
      return(

@@ -4,6 +4,7 @@ import { IoIosBookmarks } from "react-icons/io";
 import { LuSquareMenu } from "react-icons/lu";
 import { CgCloseR } from "react-icons/cg";
 import { motion } from "motion/react";  
+import { CgProfile } from "react-icons/cg";
 import Button from './Button';
 import { ThemeContext } from '../ThemeContext';
 import { IoMdMoon,IoMdSunny } from "react-icons/io";
@@ -66,12 +67,12 @@ useEffect(()=>{
                             </>
                             ) : (
                             <>
-                                <button onClick={()=>setIsOpen(!isOpen)} className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                                    {user.user_metadata.username}
+                                <button onClick={()=>setIsOpen(!isOpen)} className="w-24 mx-auto p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)] flex justify-center item-center gap-1">
+                                    <CgProfile className="w-5 h-5" /> {user.user_metadata.username}
                                 </button>
-                                <ul className={`${isOpen ? "flex flex-col" : "hidden"} gap-4 bg-[var(--background)] mt-2 border-2 border-[var(--border)] overflow-hidden rounded-[var(--radius)]`}>
+                                <ul className={`${isOpen ? "flex flex-col" : "hidden"} w-1/2 mx-auto gap-4 bg-[var(--background)] mt-2 border-2 border-[var(--border)] overflow-hidden rounded-[var(--radius)]`}>
                                     <li className='w-full'><button className="w-full p-3 hover:bg-[var(--muted)]">My Profile</button></li>
-                                    <li className='w-full'><button onClick={signOut} className="w-full p-3 hover:bg-[var(--muted)]">Logout</button></li>
+                                    <li className='w-full'><button onClick={()=>{signOut(); setIsOpen(false)}} className="w-full p-3 hover:bg-[var(--muted)]">Logout</button></li>
                                 </ul>
                             </>
                             )}
@@ -102,12 +103,12 @@ useEffect(()=>{
                 </>
                 ):(
                     <>
-                    <button onClick={()=>setIsOpen(!isOpen)} className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                        {user.user_metadata.username}
+                    <button onClick={()=>setIsOpen(!isOpen)} className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)] flex items-center gap-1">
+                        <CgProfile className="w-5 h-5" /> {user.user_metadata.username}
                     </button>
-                    <ul className={`${isOpen ? "flex flex-col" : "hidden"} min-w-30 gap-2 bg-[var(--background)] absolute top-16 translate-x-[50%,50%] border-2 border-[var(--border)] overflow-hidden rounded-[var(--radius)]`}>
+                    <ul className={`${isOpen ? "flex flex-col" : "hidden"} min-w-30 gap-2 bg-[var(--background)] absolute top-16 right-0 border-2 border-[var(--border)] overflow-hidden rounded-[var(--radius)]`}>
                         <li className='w-full'><button className="w-full p-3 hover:bg-[var(--muted)]">My Profile</button></li>
-                        <li className='w-full'><button onClick={signOut} className="w-full p-3 hover:bg-[var(--muted)]">Logout</button></li>
+                        <li className='w-full'><button onClick={()=>{signOut(); setIsOpen(false)}} className="w-full p-3 hover:bg-[var(--muted)]">Logout</button></li>
                     </ul>
                     </>
                 )}

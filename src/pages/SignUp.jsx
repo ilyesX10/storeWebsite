@@ -2,12 +2,9 @@ import Footer from "../component/Footer";
 import Button from "../component/Button"
 import {supabase} from "../lib/supabaseClient"
 import {useState, useEffect} from 'react'
-import { useContext } from "react";
-import { AuthContext } from "../AuthProvider";
 
 function SignUp(){
 
-    const {isSignIn,setIsSignIn}=useContext(AuthContext)
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const [username,setUsername]=useState("")
