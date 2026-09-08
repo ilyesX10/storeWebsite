@@ -5,12 +5,12 @@ import { LuSquareMenu } from "react-icons/lu";
 import { CgCloseR } from "react-icons/cg";
 import { motion } from "motion/react";  
 import Button from './Button';
-import { useContext } from 'react';
 import { ThemeContext } from '../ThemeContext';
 import { IoMdMoon,IoMdSunny } from "react-icons/io";
 import { Link, NavLink } from 'react-router-dom';
 import { ul } from 'motion/react-client';
 import { supabase } from '../lib/supabaseClient.js'
+import { useContext } from "react";
 import { AuthContext } from "../AuthProvider";
 
 
@@ -19,7 +19,7 @@ function Navbar({}) {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const {isSignIn,setSignIn} = useContext(AuthContext)
+    const {user,signOut} = useContext(AuthContext)
 
 useEffect(()=>{
     const handleResize = () => {
@@ -55,7 +55,7 @@ useEffect(()=>{
                                 {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                             </button>
                         </div>
-                        {!isSignIn ? (
+                        {!user ? (
                             <>
                                 <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
                                     <Link to="/sign-in">Sign In</Link>
@@ -67,11 +67,11 @@ useEffect(()=>{
                             ) : (
                             <>
                                 <button onClick={()=>setIsOpen(!isOpen)} className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                                    {username}
+                                    {user.user_metadata.username}
                                 </button>
-                                <ul className={`${isOpen ? "block" : "hidden"} flex flex-col gap-4 bg-[var(--background)] top-16 right-0 border-2 border-[var(--border)] p-2 rounded-[var(--radius)]`}>
-                                    <li><button className="p-3 hover:bg-[var(--muted)]">My Profile</button></li>
-                                    <li><button className="p-3 hover:bg-[var(--muted)]">Logout</button></li>
+                                <ul className={`${isOpen ? "flex flex-col" : "hidden"} gap-4 bg-[var(--background)] mt-2 border-2 border-[var(--border)] overflow-hidden rounded-[var(--radius)]`}>
+                                    <li className='w-full'><button className="w-full p-3 hover:bg-[var(--muted)]">My Profile</button></li>
+                                    <li className='w-full'><button onClick={signOut} className="w-full p-3 hover:bg-[var(--muted)]">Logout</button></li>
                                 </ul>
                             </>
                             )}
@@ -91,7 +91,7 @@ useEffect(()=>{
                         {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
                     </button>
                 </div>
-                {!isSignIn ? (
+                {!user ? (
                 <>
                     <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
                         <Link to="/sign-in">Sign In</Link>
@@ -103,11 +103,11 @@ useEffect(()=>{
                 ):(
                     <>
                     <button onClick={()=>setIsOpen(!isOpen)} className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                        {username}
+                        {user.user_metadata.username}
                     </button>
-                    <ul className={`${isOpen ? "block" : "hidden"} z-100 flex flex-col gap-4 bg-[var(--background)] absolute top-16 right-0 border-2 border-[var(--border)] p-2 rounded-[var(--radius)]`}>
-                        <li><a href="/" className="p-3 hover:bg-[var(--muted)] text-[var(--foreground)]">My Profile</a></li>
-                        <li><button className="p-3 hover:bg-[var(--muted)] text-[var(--foreground)]">Logout</button></li>
+                    <ul className={`${isOpen ? "flex flex-col" : "hidden"} min-w-30 gap-2 bg-[var(--background)] absolute top-16 translate-x-[50%,50%] border-2 border-[var(--border)] overflow-hidden rounded-[var(--radius)]`}>
+                        <li className='w-full'><button className="w-full p-3 hover:bg-[var(--muted)]">My Profile</button></li>
+                        <li className='w-full'><button onClick={signOut} className="w-full p-3 hover:bg-[var(--muted)]">Logout</button></li>
                     </ul>
                     </>
                 )}
