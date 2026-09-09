@@ -8,7 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import Button from './Button';
 import { ThemeContext } from '../ThemeContext';
 import { IoMdMoon,IoMdSunny } from "react-icons/io";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { ul } from 'motion/react-client';
 import { supabase } from '../lib/supabaseClient.js'
 import { useContext } from "react";
@@ -21,6 +21,7 @@ function Navbar({}) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const {user,signOut} = useContext(AuthContext)
+    const navigate = useNavigate();
 
 useEffect(()=>{
     const handleResize = () => {
@@ -71,7 +72,7 @@ useEffect(()=>{
                                     <CgProfile className="w-5 h-5" /> {user.user_metadata.username}
                                 </button>
                                 <ul className={`${isOpen ? "flex flex-col" : "hidden"} w-1/2 mx-auto gap-4 bg-[var(--background)] mt-2 border-2 border-[var(--border)] overflow-hidden rounded-[var(--radius)]`}>
-                                    <li className='w-full'><button className="w-full p-3 hover:bg-[var(--muted)]">My Profile</button></li>
+                                    <li className='w-full'><button onClick={()=>{navigate("/dashboard")}} className="w-full p-3 hover:bg-[var(--muted)]">My Profile</button></li>
                                     <li className='w-full'><button onClick={()=>{signOut(); setIsOpen(false)}} className="w-full p-3 hover:bg-[var(--muted)]">Logout</button></li>
                                 </ul>
                             </>
@@ -107,7 +108,7 @@ useEffect(()=>{
                         <CgProfile className="w-5 h-5" /> {user.user_metadata.username}
                     </button>
                     <ul className={`${isOpen ? "flex flex-col" : "hidden"} min-w-30 gap-2 bg-[var(--background)] absolute top-16 right-0 border-2 border-[var(--border)] overflow-hidden rounded-[var(--radius)]`}>
-                        <li className='w-full'><button className="w-full p-3 hover:bg-[var(--muted)]">My Profile</button></li>
+                        <li className='w-full'><button onClick={()=>{navigate("/dashboard")}} className="w-full p-3 hover:bg-[var(--muted)]">My Profile</button></li>
                         <li className='w-full'><button onClick={()=>{signOut(); setIsOpen(false)}} className="w-full p-3 hover:bg-[var(--muted)]">Logout</button></li>
                     </ul>
                     </>
