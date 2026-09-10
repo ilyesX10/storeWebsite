@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import UserDashboard from './pages/UserDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 import Navbar from './component/Navbar';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import {useState} from 'react';
@@ -33,7 +34,7 @@ function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
           </Route>
-          <Route path="/dashboard" element={<UserDashboard />} />
+          <Route path="/dashboard" element={<AdminDashboard />} />
           <Route path="*" element={<h1 className="text-2xl font-bold mt-30 text-center">Page Not Found 404</h1>}></Route>
         </Routes>
       </Router>
