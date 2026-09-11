@@ -83,9 +83,9 @@ useEffect(()=>{
             ):
             (<>  
             <ul className="flex gap-4">
-                <li><a href="/" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Home</a></li>
-                <li><a href="/Browse" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Browse</a></li>
-                <li><a href="/contact" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Contact</a></li>
+                <li><Link to="/" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Home</Link></li>
+                <li><Link to="/Browse" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Browse</Link></li>
+                <li><Link to="/contact" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Contact</Link></li>
             </ul>
             <div className="flex gap-4 relative">
                 <div className="flex items-center">
