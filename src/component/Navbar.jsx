@@ -46,12 +46,12 @@ useEffect(()=>{
                             <CgCloseR className="w-10 h-10" />
                         </button>
                     </div>
-                    <ul className="flex flex-col gap-4">
-                        <li><a href="/" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Home</a></li>
-                        <li><a href="/Browse" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Browse</a></li>
-                        <li><a href="/contact" className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Contact</a></li>
+                    <ul className="flex flex-col gap-4 z-200">
+                        <li><Link to="/" onClick={()=>setIsMenuOpen(false)} className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Home</Link></li>
+                        <li><Link to="/Browse" onClick={()=>setIsMenuOpen(false)} className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Browse</Link></li>
+                        <li><Link to="/contact" onClick={()=>setIsMenuOpen(false)} className="p-3 rounded-[var(--radius)] hover:bg-[var(--muted)]">Contact</Link></li>
                     </ul>
-                    <div className="flex flex-col gap-4 mt-4">
+                    <div className="flex flex-col gap-4 mt-4 z-200">
                         <div className="flex items-center justify-center">
                             <button onClick={toggleTheme} className="p-1 rounded-full bg-[var(--foreground)] text-[var(--background)] w-6 h-6 flex items-center justify-center">
                                 {theme === "light" ? <IoMdSunny /> : <IoMdMoon />}
@@ -59,10 +59,10 @@ useEffect(()=>{
                         </div>
                         {!user ? (
                             <>
-                                <Button onClick={()=> navigate("sign-in")} className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
+                                <Button onClick={() => { navigate("/sign-in"); setIsMenuOpen(false); }} className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
                                     Sign In
                                 </Button>
-                                <Button onClick={()=> navigate("sign-up")} className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
+                                <Button onClick={() => { navigate("/sign-up"); setIsMenuOpen(false); }} className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
                                     Sign Up
                                 </Button>
                             </>
@@ -95,11 +95,11 @@ useEffect(()=>{
                 </div>
                 {!user ? (
                 <>
-                    <Button className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                        <Link to="/sign-in">Sign In</Link>
+                    <Button onClick={() => navigate("/sign-in")} className="p-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
+                        Sign In
                     </Button>
-                    <Button className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
-                        <Link to="/sign-up">Sign Up</Link>
+                    <Button onClick={() => navigate("/sign-up")} className="p-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
+                        Sign Up
                     </Button>
                 </>
                 ):(
