@@ -59,11 +59,11 @@ useEffect(()=>{
                         </div>
                         {!user ? (
                             <>
-                                <Button className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
-                                    <Link to="/sign-in">Sign In</Link>
+                                <Button onClick={()=> navigate("sign-in")} className="p-1 py-2 hover:cursor-pointer hover:text-[var(--primary)] rounded-[var(--radius)] border-2 border-[var(--border)]">
+                                    Sign In
                                 </Button>
-                                <Button className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
-                                    <Link to="/sign-up">Sign Up</Link>
+                                <Button onClick={()=> navigate("sign-up")} className="p-1 py-2 hover:cursor-pointer bg-[var(--primary)] text-white rounded-[var(--radius)]">
+                                    Sign Up
                                 </Button>
                             </>
                             ) : (
