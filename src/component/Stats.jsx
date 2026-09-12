@@ -13,7 +13,7 @@ function Stats() {
                     </span>
                 </div>
                 <motion.div initial={{ opacity: 0, y: 20 }} transition={{duration:0.5}} animate={{ opacity: 1, y: 0 }} className="z-[-1] absolute -top-7 mx-2 flex flex-col items-center justify-start w-full h-[60px] dark:text-white text-black bg-[var(--secondary)]/80 backdrop-blur-sm rounded-[var(--radius)] p-1">
-                    <span className="text-base flex items-start font-semibold">Books Available</span>
+                    <span className="text-sm flex items-start font-semibold sm:text-base">Books Available</span>
                 </motion.div>
             </div>
             <div className='my-4 relative scale-100 hover:scale-105 transition-all w-[260px] h-[160px] rounded-[var(--radius)]'>
@@ -23,7 +23,7 @@ function Stats() {
                     </span>
                 </div>
                 <motion.div initial={{ opacity: 0, y: 20 }} transition={{duration:0.5,delay:0.25}} animate={{ opacity: 1, y: 0 }} className="z-[-1] absolute -top-7 mx-2 flex flex-col items-center justify-start w-full h-[60px] dark:text-white text-black bg-[var(--secondary)]/80 backdrop-blur-sm rounded-[var(--radius)] p-1">
-                    <span className="text-base flex items-start font-semibold">Categories</span>
+                    <span className="text-sm flex items-start font-semibold sm:text-base">Categories</span>
                 </motion.div>
             </div>
             <div className='my-4 relative scale-100 hover:scale-105 transition-all w-[260px] h-[160px] rounded-[var(--radius)]'>
@@ -33,7 +33,7 @@ function Stats() {
                     </span>
                 </div>
                 <motion.div initial={{ opacity: 0, y: 20 }} transition={{duration:0.5,delay:0.5}} animate={{ opacity: 1, y: 0 }} className="z-[-1] absolute -top-7 mx-2 flex flex-col items-center justify-start w-full h-[60px] dark:text-white text-black bg-[var(--secondary)]/80 backdrop-blur-sm rounded-[var(--radius)] p-1">
-                    <span className="text-base flex items-start font-semibold">Articles</span>
+                    <span className="text-sm flex items-start font-semibold sm:text-base">Articles</span>
                 </motion.div>
             </div>
         </div>    

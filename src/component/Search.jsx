@@ -13,8 +13,8 @@ function Search({filterBooks}) {
     }
     return (
         <>
-            <form onSubmit={handelClick} className='flex items-center justify-center gap-2 w-full px-6'>
-                <div className="inline-flex items-center gap-3 pl-4 flex-1 border rounded-[var(--radius)] overflow-hidden border-[var(--border)] outline-transparent outline-2 focus-within:outline-[var(--foreground)]/50 transition-all">
+            <form onSubmit={handelClick} className='flex items-center justify-center gap-2 w-full p-0 sm:px-6'>
+                <div className="flex items-center gap-3 pl-4 flex-1 border rounded-[var(--radius)] overflow-hidden border-[var(--border)] outline-transparent outline-2 focus-within:outline-[var(--foreground)]/50 transition-all">
                     <FaSearch className="text-gray-400 w-4 h-4" />
                     <input
                         type="search"

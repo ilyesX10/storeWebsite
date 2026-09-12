@@ -19,7 +19,7 @@ function SideNavbar({children,title}){
                     </nav>
                 </div>
             </aside>
-            {isMenuOpen || (<button onClick={()=>setIsMenuOpen(true)} className="hover:cursor-pointer hover:text-[var(--primary)] fixed top-10 left-20 z-100">
+            {isMenuOpen || (<button onClick={()=>setIsMenuOpen(true)} className="hover:cursor-pointer hover:text-[var(--primary)] fixed top-10 left-5 md:left-20 z-100">
                 <LuSquareMenu className="w-10 h-10" />
             </button>)}
         </>
